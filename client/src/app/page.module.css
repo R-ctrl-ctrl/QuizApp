@@ -228,3 +228,26 @@
     transform: rotate(0deg);
   }
 }
+
+
+.nav_link {
+  position: relative;
+  cursor: pointer;
+}
+
+.nav_link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+  font-weight: bold;
+}
+
+.nav_link:hover::after {
+  width: 100%;
+}
+
