@@ -1,7 +1,25 @@
-import React from "react";
-import { Box, Flex, Heading, Input, Button, FormControl, FormLabel } from "@chakra-ui/react";
+"use client"
+import React, { useState } from "react";
+import { Box, Flex, Heading, Input, Button, FormControl, FormLabel, useToast } from "@chakra-ui/react";
 
 const page = () => {
+  const [email, setemail] = useState()
+  const [password, setpassword] = useState()
+  const toast = useToast()
+
+  const handleClick = async () => {
+    alert('hello')
+    if (!email || !password) {
+      toast({
+        title: 'Warning',
+        description: "All fields are necessary!",
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+      })
+      return;
+    }
+  }
   return (
     <Flex
       minH="100vh"
@@ -23,7 +41,7 @@ const page = () => {
         <Box my={4} textAlign="left">
           <FormControl>
             <FormLabel>Email:</FormLabel>
-            <Input placeholder="Username" size="lg" />
+            <Input placeholder="Username" size="lg" onChange={(e)=>setemail(e.target.value)} />
           </FormControl>
           <FormControl mt={6}>
             <FormLabel>Password:</FormLabel>
@@ -31,11 +49,13 @@ const page = () => {
               placeholder="Password"
               size="lg"
               type="password"
+              onChange={(e)=>setpassword(e.target.value)}
             />
           </FormControl>
-          <Button colorScheme="teal" size="lg" mt={8} w="100%">
+          <Button onClick={handleClick} colorScheme="teal" size="lg" mt={8} w="100%">
             Sign In
           </Button>
+          <button onClick={handleClick}>click me </button>
         </Box>
       </Box>
     </Flex>

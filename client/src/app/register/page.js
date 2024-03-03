@@ -1,7 +1,20 @@
-import React from "react";
-import { Box, Flex, Heading, Input, Button, FormControl, FormLabel } from "@chakra-ui/react";
+"use client"
+import React, { useState } from "react";
+import { Box, Flex, Heading, Input, Button, FormControl, FormLabel, useToast } from "@chakra-ui/react";
 
 const RegisterForm = () => {
+  const [name, setname] = useState()
+  const [email, setemail] = useState()
+  const [password, setpassword] = useState()
+  const [conpassword, setconpassword] = useState()
+  const toast = useToast()
+  const handleClick = async () => {
+    alert("Hello")
+  
+
+    
+
+  }
   return (
     <Flex
       minH="100vh"
@@ -23,7 +36,7 @@ const RegisterForm = () => {
         <Box my={4} textAlign="left">
           <FormControl>
             <FormLabel>Username:</FormLabel>
-            <Input placeholder="Username" size="lg" />
+            <Input onChange={(e)=>setname(e.target.value)} placeholder="Username" size="lg" />
           </FormControl>
           <FormControl mt={4}>
             <FormLabel>Email:</FormLabel>
@@ -31,6 +44,7 @@ const RegisterForm = () => {
               placeholder="Email"
               size="lg"
               type="email"
+              onChange={(e)=>setemail(e.target.value)}
             />
           </FormControl>
           <FormControl mt={4}>
@@ -39,6 +53,7 @@ const RegisterForm = () => {
               placeholder="Password"
               size="lg"
               type="password"
+              onChange={(e)=>setpassword(e.target.value)}
             />
           </FormControl>
           <FormControl mt={4}>
@@ -47,9 +62,10 @@ const RegisterForm = () => {
               placeholder="Confirm Password"
               size="lg"
               type="password"
+              onChange={(e)=>setconpassword(e.target.value)}
             />
           </FormControl>
-          <Button colorScheme="teal" size="lg" mt={7} w="100%">
+          <Button colorScheme="teal" size="lg" mt={7} w="100%" onClick={handleClick}>
             Register
           </Button>
         </Box>

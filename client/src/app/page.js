@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import styles from "./page.module.css";
-import { Box, Flex, Link, Button, Heading } from '@chakra-ui/react';
+import { Box, Flex, Link, Button, Heading, GridItem, Grid, Center } from '@chakra-ui/react';
 import {
   FormControl,
   FormLabel,
@@ -9,18 +9,54 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import Navbar from "../../components/Navbar";
+import Card from "../../components/Card";
 
 
 
 export default function Home() {
+
+  function handleClick(){
+    console.log("hell")
+    alert("Hell")
+  }
+
   return (
     <Box
       w="100vw"
-      h="100vh"
+      minH="100vh"
       bgGradient="linear(to-tr, teal.300, blue.500)"
     >
-      <Navbar/>
-      
+      <Navbar />
+      <button onClick={handleClick}>Clickhere</button>
+      <Center>
+        <Grid
+          templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
+          gap={16}
+          p={4}
+        >
+          <GridItem>
+            <Card />
+          </GridItem>
+          <GridItem>
+            <Card />
+          </GridItem>
+          <GridItem>
+            <Card />
+          </GridItem>
+          <GridItem>
+            <Card />
+          </GridItem>
+          <GridItem>
+            <Card />
+          </GridItem>
+          <GridItem>
+            <Card />
+          </GridItem>
+          <GridItem>
+            <Card />
+          </GridItem>
+        </Grid>
+      </Center>
     </Box>
   );
 }
