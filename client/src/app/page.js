@@ -27,7 +27,6 @@ export default function Home() {
       bgGradient="linear(to-tr, teal.300, blue.500)"
     >
       <Navbar />
-      <button onClick={handleClick}>Clickhere</button>
       <Center>
         <Grid
           templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
