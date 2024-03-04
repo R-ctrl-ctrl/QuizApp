@@ -1,8 +1,8 @@
 import React from "react";
-import { Box, Flex, Text, Spacer, Link } from "@chakra-ui/react";
+import { Box, Flex, Text, Spacer, Link, Button } from "@chakra-ui/react";
 import styles from '../src/app/page.module.css'
 
-const Navbar = () => {
+const Navbartwo = (props) => {
   return (
     <Box h="10%" px={4} py={3}>
       <Flex h="full" alignItems="center" justifyContent={"center"}>
@@ -14,14 +14,14 @@ const Navbar = () => {
         </Text>
         <Spacer />
         <Text className={styles.nav_link} color="white" fontSize="20px" mr={20} _hover={{ fontWeight: "bold" }}>
-          <Link _hover={{ textDecoration: "none" }} href="/login">Login</Link>
+          Welcome {props.name}
         </Text>
-        <Text className={styles.nav_link} color="white" fontSize="20px" mr={20} _hover={{ fontWeight: "bold" }}>
-          <Link _hover={{ textDecoration: "none" }} href="/register">Register</Link>
-        </Text>
+        <Button mr={20} colorScheme={'red'} >
+          LogOut
+        </Button>
       </Flex>
     </Box>
   );
 };
 
-export default Navbar;
+export default Navbartwo;

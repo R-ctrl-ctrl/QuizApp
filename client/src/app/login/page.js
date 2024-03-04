@@ -1,14 +1,15 @@
 "use client"
 import React, { useState } from "react";
 import { Box, Flex, Heading, Input, Button, FormControl, FormLabel, useToast } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const [email, setemail] = useState()
   const [password, setpassword] = useState()
   const toast = useToast()
+  const router = useRouter()
 
   const handleClick = async () => {
-    alert('hello')
     if (!email || !password) {
       toast({
         title: 'Warning',
@@ -19,6 +20,31 @@ const page = () => {
       })
       return;
     }
+
+    const response = await fetch('http://localhost:8000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+
+    const data = await response.json()
+    if(data.status == "error"){
+      alert("wrong Credentials!")
+      return
+    }
+    else{
+      alert("cool")
+      const token = data.user
+      localStorage.setItem("jwttoken",token)
+      router.push("/")
+    }
+
+
   }
   return (
     <Flex
@@ -41,7 +67,7 @@ const page = () => {
         <Box my={4} textAlign="left">
           <FormControl>
             <FormLabel>Email:</FormLabel>
-            <Input placeholder="Username" size="lg" onChange={(e)=>setemail(e.target.value)} />
+            <Input placeholder="Username" size="lg" onChange={(e) => setemail(e.target.value)} />
           </FormControl>
           <FormControl mt={6}>
             <FormLabel>Password:</FormLabel>
@@ -49,13 +75,12 @@ const page = () => {
               placeholder="Password"
               size="lg"
               type="password"
-              onChange={(e)=>setpassword(e.target.value)}
+              onChange={(e) => setpassword(e.target.value)}
             />
           </FormControl>
           <Button onClick={handleClick} colorScheme="teal" size="lg" mt={8} w="100%">
             Sign In
           </Button>
-          <button onClick={handleClick}>click me </button>
         </Box>
       </Box>
     </Flex>
