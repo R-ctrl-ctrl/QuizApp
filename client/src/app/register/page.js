@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { Box, Flex, Heading, Input, Button, FormControl, FormLabel, useToast } from "@chakra-ui/react";
+import Link from "next/link";
 
 const RegisterForm = () => {
   const [name, setName] = useState(""); // Initialize state variables with empty strings
