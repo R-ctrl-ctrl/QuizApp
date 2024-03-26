@@ -86,7 +86,7 @@ const Page = () => {
             Sign In
           </Button>
           <Box mt={4} textAlign="center">
-            <Link href="/register" color="teal.500">Don't have an account? Register</Link>
+            <Link href="/register" color="teal.500">Already have an account? Register</Link>
           </Box>
         </Box>
       </Box>
