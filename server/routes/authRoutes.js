@@ -14,7 +14,8 @@ router.post('/register', connectMongoDB, async (req, res) => {
 		const { name, email, password } = req.body;
         console.log(req.body)
 		const hashPassword = await bcrypt.hash(password, 10);
-		const user = await User.create({ name, email, password: hashPassword })
+		const responses = [];
+		const user = await User.create({ name, email, password: hashPassword,responses })
 		res.json({"message":"ok"})
 	} catch (err) {
         console.log(err)

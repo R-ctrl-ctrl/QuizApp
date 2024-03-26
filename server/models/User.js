@@ -16,7 +16,21 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  responses: [{
+    quiz_id: {
+      type: mongoose.Schema.Types.ObjectId, 
+      required: true
+    },
+    score: {
+      type: Number,
+      required: true
+    },
+    rank: {
+      type: Number,
+      required: true
+    }
+  }]
 });
 
 // Create User model

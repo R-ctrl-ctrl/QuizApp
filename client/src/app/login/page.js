@@ -6,10 +6,12 @@ import { useRouter } from "next/navigation";
 const page = () => {
   const [email, setemail] = useState()
   const [password, setpassword] = useState()
+  const [loading,setLoading] = useState(false)
   const toast = useToast()
   const router = useRouter()
 
   const handleClick = async () => {
+    setLoading(true)
     if (!email || !password) {
       toast({
         title: 'Warning',
@@ -18,6 +20,7 @@ const page = () => {
         duration: 4000,
         isClosable: true,
       })
+      setLoading(false)
       return;
     }
 
@@ -35,15 +38,15 @@ const page = () => {
     const data = await response.json()
     if(data.status == "error"){
       alert("wrong Credentials!")
+      setLoading(false)
       return
     }
     else{
-      alert("cool")
       const token = data.user
       localStorage.setItem("jwttoken",token)
       router.push("/")
     }
-
+    setLoading(false)
 
   }
   return (
@@ -78,7 +81,7 @@ const page = () => {
               onChange={(e) => setpassword(e.target.value)}
             />
           </FormControl>
-          <Button onClick={handleClick} colorScheme="teal" size="lg" mt={8} w="100%">
+          <Button isLoading={loading} onClick={handleClick} colorScheme="teal" size="lg" mt={8} w="100%">
             Sign In
           </Button>
         </Box>

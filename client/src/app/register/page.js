@@ -8,11 +8,12 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading,setLoading] = useState(false)
   const router = useRouter();
   const toast = useToast();
 
   const handleSubmit = async () => {
-
+    setLoading(true)
     if (password !== confirmPassword) {
       toast({
         title: "Password Mismatch",
@@ -21,6 +22,7 @@ const RegisterForm = () => {
         duration: 3000,
         isClosable: true,
       });
+      setLoading(false)
       return;
     }
 
@@ -41,6 +43,7 @@ const RegisterForm = () => {
       alert("User Created")
       router.push('/login')
     }
+    setLoading(false)
   };
 
   return (
@@ -78,7 +81,7 @@ const RegisterForm = () => {
             <FormLabel>Confirm Password:</FormLabel>
             <Input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" size="lg" type="password" />
           </FormControl>
-          <Button onClick={handleSubmit} colorScheme="teal" size="lg" mt={7} w="100%" type="submit">
+          <Button isLoading={loading} onClick={handleSubmit} colorScheme="teal" size="lg" mt={7} w="100%" type="submit">
             Register
           </Button>
         </Box>

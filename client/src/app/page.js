@@ -13,33 +13,49 @@ import Card from "../../components/Card";
 import { useEffect, useState } from "react";
 import Navbarone from "../../components/Navbarone";
 import Navbartwo from "../../components/Navbartwo";
+import { useRouter } from "next/navigation";
+import LandingPage from "../../components/LandingPage";
 
 
 
 export default function Home() {
   const [user, setuser] = useState()
+  const router = useRouter()
+  const [quizes, setquizes] = useState([])
+
+  const fetchquizes = async () => {
+    const response = await fetch('http://localhost:8000/getquizdata', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json()
+    if (data.message == "ok") {
+      console.log(data)
+      setquizes(data.data)
+    }
+    else {
+      alert("error fetching quizes")
+    }
+  }
+
 
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem('jwttoken');
-      console.log(token)
       const response = await fetch('http://localhost:8000/verifytoken', {
         method: 'GET',
         headers: {
           'Authorization': token
         }
       });
-
-      if (!response.ok) {
-        router.push('/login')
-      }
-
       const data = await response.json();
       setuser(data.user)
-      console.log('Response:', data);
     };
 
     fetchData();
+    fetchquizes();
   }, [])
 
   return (
@@ -49,39 +65,35 @@ export default function Home() {
       bgGradient="linear(to-tr, teal.300, blue.500)"
     >
       {user ? (
-        <Navbartwo name={user.name} />
+        <Box>
+          <Navbartwo name={user.name} id={user._id} />
+          <Center>
+            <Grid
+              templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
+              gap={16}
+              p={4}
+            >
+              {quizes && quizes.map((data, key) => {
+                if (data.disabled) {
+                  return null; // Skip rendering if data.disabled is true
+                }
+                return (
+                  <GridItem key={key}>
+                    <Card data={data} val={0} />
+                  </GridItem>
+                )
+              })}
+            </Grid>
+          </Center>
+        </Box>
+
       ) : (
-        <Navbarone />
+        <Box>
+          <Navbarone />
+          <LandingPage/>
+        </Box>
       )}
-      <Center>
-        <Grid
-          templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
-          gap={16}
-          p={4}
-        >
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-        </Grid>
-      </Center>
+
     </Box>
   );
 }
