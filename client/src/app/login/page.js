@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Box, Flex, Heading, Input, Button, FormControl, FormLabel, useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Page = () => {
   const [email, setemail] = useState()
@@ -84,6 +85,9 @@ const Page = () => {
           <Button isLoading={loading} onClick={handleClick} colorScheme="teal" size="lg" mt={8} w="100%">
             Sign In
           </Button>
+          <Box mt={4} textAlign="center">
+            <Link href="/register" color="teal.500">Don't have an account? Register</Link>
+          </Box>
         </Box>
       </Box>
     </Flex>
