@@ -48,6 +48,7 @@ async function disableQuizAndPerformActions(quizId) {
 }
 
 function scheduleQuizDisabling(quizId) {
+  alert("good good")
   setTimeout(() => {
     disableQuizAndPerformActions(quizId);
   }, 3 * 60 * 1000);
