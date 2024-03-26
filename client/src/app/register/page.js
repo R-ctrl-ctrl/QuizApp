@@ -1,19 +1,19 @@
 "use client"
 import React, { useState } from "react";
 import { useRouter } from 'next/navigation';
-import { Box, Flex, Heading, Input, Button, FormControl, FormLabel, useToast } from "@chakra-ui/react";
+import { Box, Flex, Heading, Input, Button, FormControl, FormLabel, useToast, Link } from "@chakra-ui/react";
 
 const RegisterForm = () => {
-  const [name, setName] = useState(""); // Initialize state variables with empty strings
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const toast = useToast();
 
   const handleSubmit = async () => {
-    setLoading(true)
+    setLoading(true);
     if (password !== confirmPassword) {
       toast({
         title: "Password Mismatch",
@@ -22,12 +22,11 @@ const RegisterForm = () => {
         duration: 3000,
         isClosable: true,
       });
-      setLoading(false)
+      setLoading(false);
       return;
     }
 
-
-    const formData = { name, email, password }
+    const formData = { name, email, password };
     const response = await fetch('https://quizzy-quest-gules.vercel.app/register', {
       method: 'POST',
       headers: {
@@ -35,15 +34,15 @@ const RegisterForm = () => {
       },
       body: JSON.stringify(formData)
     });
-    const data = await response.json()
-    if (data.message != "ok"){
-      alert("Email Already exists")
+    const data = await response.json();
+    if (data.message !== "ok"){
+      alert("Email Already exists");
     }
     else {
-      alert("User Created")
-      router.push('/login')
+      alert("User Created");
+      router.push('/login');
     }
-    setLoading(false)
+    setLoading(false);
   };
 
   return (
@@ -84,6 +83,9 @@ const RegisterForm = () => {
           <Button isLoading={loading} onClick={handleSubmit} colorScheme="teal" size="lg" mt={7} w="100%" type="submit">
             Register
           </Button>
+          <Box mt={4} textAlign="center">
+            <Link href="/login" color="teal.500">Already have an account? Login</Link>
+          </Box>
         </Box>
       </Box>
     </Flex>
