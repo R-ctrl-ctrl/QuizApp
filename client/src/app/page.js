@@ -1,4 +1,5 @@
 "use client"
+import Head from 'next/head';
 import Image from "next/image";
 import styles from "./page.module.css";
 import { Box, Flex, Link, Button, Heading, GridItem, Grid, Center } from '@chakra-ui/react';
@@ -64,6 +65,9 @@ export default function Home() {
       minH="100vh"
       bgGradient="linear(to-tr, teal.300, blue.500)"
     >
+        <Head>
+                <title>Quizzy Quest</title>
+            </Head>
       {user ? (
         <Box>
           <Navbartwo name={user.name} id={user._id} />
