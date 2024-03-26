@@ -104,6 +104,7 @@ const QuestionPage = () => {
                 router.push('/')
             }
             else {
+                alert("NO")
                 alert(d.message)
             }
         } catch (error) {
