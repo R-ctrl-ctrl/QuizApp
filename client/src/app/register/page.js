@@ -84,6 +84,9 @@ const RegisterForm = () => {
           <Button isLoading={loading} onClick={handleSubmit} colorScheme="teal" size="lg" mt={7} w="100%" type="submit">
             Register
           </Button>
+          <Box mt={4} textAlign="center">
+            <Link href="/login" color="teal.500">Already have an account? Login</Link>
+          </Box>
         </Box>
       </Box>
     </Flex>
