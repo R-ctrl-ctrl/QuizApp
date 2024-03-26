@@ -24,7 +24,7 @@ async function disableQuizAndPerformActions(quizId) {
       result.rank = index + 1;
     });
     await quizresp.save()
-    console.log(`Quiz with ID ${quizId} has been disabled and actions have been performed.`);
+  
 
     const arr = quizresp.results
     for (const item of arr) {
