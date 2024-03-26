@@ -77,7 +77,7 @@ const QuizPage = ({ params }) => {
     });
 
     try {
-      const response = await fetch("http://localhost:8000/quiz-response", {
+      const response = await fetch("https://quizzy-quest-gules.vercel.app/quiz-response", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
