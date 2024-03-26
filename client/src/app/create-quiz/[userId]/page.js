@@ -16,7 +16,7 @@ const QuestionPage = () => {
         const fetchData = async () => {
             const token = localStorage.getItem('jwttoken');
             console.log(token)
-            const response = await fetch('http://localhost:8000/verifytoken', {
+            const response = await fetch('https://quizzy-quest-gules.vercel.app/verifytoken', {
                 method: 'GET',
                 headers: {
                     'Authorization': token
@@ -91,7 +91,7 @@ const QuestionPage = () => {
                 correctOption,
             }));
             const finaldata = { owner_name: user.name,title,description, data }
-            const response = await fetch('http://localhost:8000/storequiz', {
+            const response = await fetch('https://quizzy-quest-gules.vercel.app/storequiz', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Box, Flex, Heading, Input, Button, FormControl, FormLabel, useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const [email, setemail] = useState()
   const [password, setpassword] = useState()
   const [loading,setLoading] = useState(false)
@@ -24,7 +24,7 @@ const page = () => {
       return;
     }
 
-    const response = await fetch('http://localhost:8000/login', {
+    const response = await fetch('https://quizzy-quest-gules.vercel.app/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,4 +90,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

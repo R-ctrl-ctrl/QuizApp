@@ -14,7 +14,7 @@ const QuizPage = ({ params }) => {
   const fetchData = async () => {
     const token = localStorage.getItem('jwttoken');
     console.log(token)
-    const response = await fetch('http://localhost:8000/verifytoken', {
+    const response = await fetch('https://quizzy-quest-gules.vercel.app/verifytoken', {
       method: 'GET',
       headers: {
         'Authorization': token
@@ -35,7 +35,7 @@ const QuizPage = ({ params }) => {
   useEffect(() => {
     const fetchQuizData = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/api/quiz/${params.QuizId}`);
+        const response = await fetch(`https://quizzy-quest-gules.vercel.app/api/quiz/${params.QuizId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch quiz data');
         }

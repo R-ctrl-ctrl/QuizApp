@@ -28,7 +28,7 @@ const RegisterForm = () => {
 
 
     const formData = { name, email, password }
-    const response = await fetch('http://localhost:8000/register', {
+    const response = await fetch('https://quizzy-quest-gules.vercel.app/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

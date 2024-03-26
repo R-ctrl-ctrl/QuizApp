@@ -10,7 +10,7 @@ const Home = ({ params }) => {
     const fetchResponses = async () => {
 
       try {
-        const response = await fetch(`http://localhost:8000/api/users/${params.username}`);
+        const response = await fetch(`https://quizzy-quest-gules.vercel.app/api/users/${params.username}`);
         if (!response.ok) {
           throw new Error('Failed to fetch responses');
         }

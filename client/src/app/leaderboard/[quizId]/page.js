@@ -8,7 +8,7 @@ const Leaderboard = ({ params }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/quiz/${params.quizId}`);
+        const response = await fetch(`https://quizzy-quest-gules.vercel.app/quiz/${params.quizId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch quiz data');
         }

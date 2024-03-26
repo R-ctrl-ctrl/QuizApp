@@ -4,28 +4,34 @@ import Navbartwo from '../../../components/Navbartwo'
 import { Box, Center, Grid, GridItem } from '@chakra-ui/react'
 import MyCard from '../../../components/Card'
 
-const page = () => {
-    const [quizes, setquizes] = useState([])
-    const fetchquizes = async () => {
-        const response = await fetch('http://localhost:8000/getquizdata', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
+const Page = () => {
+    const [quizes, setQuizes] = useState([])
+    
+    const fetchQuizes = async () => {
+        try {
+            const response = await fetch('https://quizzy-quest-gules.vercel.app/getquizdata', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json()
+            if (data.message === "ok") {
+                console.log(data)
+                setQuizes(data.data)
+            } else {
+                alert("error fetching quizes")
             }
-        });
-        const data = await response.json()
-        if (data.message == "ok") {
-            console.log(data)
-            setquizes(data.data)
-        }
-        else {
-            alert("error fetching quizes")
+        } catch (error) {
+            console.error("Error fetching quizes:", error)
+            alert("Error fetching quizes. Please check console for details.")
         }
     }
 
     useEffect(() => {
-        fetchquizes();
+        fetchQuizes();
     }, [])
+    
     return (
         <Box
             w="100vw"
@@ -55,4 +61,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
