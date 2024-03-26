@@ -24,7 +24,7 @@ export default function Home() {
   const [quizes, setquizes] = useState([])
 
   const fetchquizes = async () => {
-    const response = await fetch('http://localhost:8000/getquizdata', {
+    const response = await fetch('https://quizzy-quest-gules.vercel.app/getquizdata', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem('jwttoken');
-      const response = await fetch('http://localhost:8000/verifytoken', {
+      const response = await fetch('https://quizzy-quest-gules.vercel.app/verifytoken', {
         method: 'GET',
         headers: {
           'Authorization': token
